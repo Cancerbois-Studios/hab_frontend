@@ -10,7 +10,7 @@ export class AppComponent implements OnInit {
   title = 'app';
   
   ngOnInit() {
-	localStorage.setItem('title', JSON.stringify({ title: "localStorageWorks" }));
-	this.title = JSON.parse(localStorage.getItem('title'))['title'];
+    localStorage.setItem('title', JSON.stringify({ title: "localStorageWorks" }));
+    this.title = JSON.parse(localStorage.getItem('title'))['title'];
   }
 }

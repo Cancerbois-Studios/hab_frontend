@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpReqsService } from '../../services/http-reqs.service';
-import { HttpDefined } from '../../interfaces/http-defined';
+import { AuthenticationService } from '../../services/authentication.service';
 
 @Component({
   selector: 'app-login',
@@ -9,20 +8,11 @@ import { HttpDefined } from '../../interfaces/http-defined';
 })
 export class LoginComponent implements OnInit {
 
-  public token = "";
-
-  constructor(private httpReqs: HttpReqsService) { }
+  constructor(private authenticationService: AuthenticationService) { }
 
   ngOnInit() {
-    let reqOption: HttpDefined = {
-      requestResource: 'http://skjoldtoft.dk/daniel/hab/index.php',
-      data: {class: "jwtToken",
-      method: "getJwtToken"},
-      statusCode: [200]
-    };
-    this.httpReqs.sendPostRequest(reqOption).subscribe(data => {
-      //console.log(data);
-      this.token = data[0];
+    this.authenticationService.login('dst','dst').subscribe(() => {
+      console.log("logging in!");
     });
   }
 

@@ -5,14 +5,16 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 import { HttpHeaders, HttpClient, HttpResponse, HttpRequest } from '@angular/common/http';
 import { HttpDefined } from '../interfaces/http-defined';
+import { AuthenticationService } from './authentication.service';
 
 @Injectable()
 export class HttpReqsService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private authenticationService: AuthenticationService) { }
 
   sendPostRequest(reqOption: HttpDefined) {
     let headers = new HttpHeaders();
+    headers.append('authorization', this.authenticationService.getToken());
     let retval = this.http.post(reqOption.requestResource, reqOption.data, { headers: headers, observe: 'response' }).map((response: HttpResponse<Object>) => {
       if (reqOption.statusCode.indexOf(response.status) > -1) {
         return response.body;

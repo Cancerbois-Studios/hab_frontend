@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LoginComponent } from './viewes/login/login.component';
 import { HttpReqsService } from './services/http-reqs.service';
+import { AuthenticationService } from './services/authentication.service';
 import { HttpClient } from '@angular/common/http/src/client';
 
 @NgModule({
@@ -10,7 +11,8 @@ import { HttpClient } from '@angular/common/http/src/client';
   ],
   declarations: [LoginComponent],
   providers: [
-    HttpReqsService
+    HttpReqsService,
+    AuthenticationService
   ],
   exports: [
     LoginComponent
