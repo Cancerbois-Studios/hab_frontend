@@ -30,5 +30,5 @@ export class HttpReqsService {
     });
     return retval;
   }
-  
+
 }

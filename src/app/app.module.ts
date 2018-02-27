@@ -5,6 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 
 import { FrameworkModule } from './modules/framework/framework.module';
+import { ChrisNorwegianStatesModule } from './modules/chris-norwegian-states/chris-norwegian-states.module';
 
 @NgModule({
   declarations: [
@@ -13,7 +14,8 @@ import { FrameworkModule } from './modules/framework/framework.module';
   imports: [
     BrowserModule,
     FrameworkModule,
-    HttpClientModule
+    HttpClientModule,
+    ChrisNorwegianStatesModule
   ],
   providers: [],
   bootstrap: [AppComponent]

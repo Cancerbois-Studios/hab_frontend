@@ -1,0 +1,4 @@
+<p>Which state is {{address}} in?:</p>
+<select [(ngModel)]="selectedAnswer">
+  <option *ngFor="let key of answers">{{key}}</option>
+</select>
