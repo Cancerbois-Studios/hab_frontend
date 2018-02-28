@@ -42,6 +42,8 @@ export class InputListComponent implements OnInit {
   }
 
   public splitInput() {
+    this.addresses = [];
+    this.answers = [];
     let splitForLines = this.input.split("\n");
     splitForLines.forEach((eachLine) => {
       let splittedLine = eachLine.split("\t");

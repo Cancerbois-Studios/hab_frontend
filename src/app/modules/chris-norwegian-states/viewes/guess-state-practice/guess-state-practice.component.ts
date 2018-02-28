@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { InputListComponent } from '../../components/input-list/input-list.component';
 import { ChooseAnswerComponent } from '../../components/choose-answer/choose-answer.component';
+import { CommonFunctionsService } from '../../../framework/services/common-functions.service';
 
 @Component({
   selector: 'app-guess-state-practice',
@@ -10,13 +11,10 @@ import { ChooseAnswerComponent } from '../../components/choose-answer/choose-ans
 export class GuessStatePracticeComponent implements OnInit {
   public addresses = [];
   public answers = [];
-  public addressIndex = 0;
-  public maxAddressesIndex = 0;
-  public correctAnswersAddresses = [];
-  public incorrectAnswersAddresses = [];
-  public answeredCounter = 0;
-  public correctCounter = 0;
-  public lastCorrectAnswer = '';
+  public currentQuestion;
+  public lastQuestion = null;
+  public correctAnsweredQuestions = [];
+  public incorrectAnsweredQuestions = [];
 
   @ViewChild(InputListComponent)
   public inputListComponent: InputListComponent;
@@ -24,40 +22,45 @@ export class GuessStatePracticeComponent implements OnInit {
   public chooseAnswerComponent: ChooseAnswerComponent;
 
 
-  constructor() { }
+  constructor(private commonFunctions: CommonFunctionsService) { }
 
   ngOnInit() {
     this.updateInput();
+    this.nextAnswer();
     this.updateOutput();
-    this.maxAddressesIndex = this.addresses.length - 1;
   }
 
   public updateInput() {
     this.answers = this.inputListComponent.getPossibleAnswers();
     this.addresses = this.inputListComponent.getAddresses();
+    this.commonFunctions.shuffleArray(this.addresses);
   }
 
   public updateOutput() {
-    this.chooseAnswerComponent.update(this.addresses[this.addressIndex + this.answeredCounter]['address'], this.answers);
+    if(this.currentQuestion != null) {
+      this.chooseAnswerComponent.update(this.currentQuestion['address'], this.answers);
+      return;
+    }
+    this.chooseAnswerComponent.update('-', this.answers);
   }
 
   public chooseAnswer() {
-    let varNumber = this.addressIndex + this.answeredCounter;
-    this.lastCorrectAnswer = this.addresses[varNumber]['answer'];
-    if (this.chooseAnswerComponent.selectedAnswer == this.addresses[varNumber]['answer']) {
-      this.correctAnswersAddresses.push(this.addresses[varNumber]);
-      this.correctCounter++;
+    this.lastQuestion = this.currentQuestion;
+    if (this.chooseAnswerComponent.selectedAnswer == this.currentQuestion['answer']) {
+      this.correctAnsweredQuestions.push(this.currentQuestion);
     } else {
-      this.incorrectAnswersAddresses.push(this.addresses[varNumber]);
+      this.incorrectAnsweredQuestions.push(this.currentQuestion);
     }
-    this.answeredCounter++;
+    this.nextAnswer();
     this.updateOutput();
-    console.log(this.addresses.length - this.answeredCounter + " index:" + (this.addressIndex + this.answeredCounter));
-    if(this.addresses.length <= this.addressIndex + this.answeredCounter) {
-      this.addressIndex--;
+  }
+
+  private nextAnswer() {
+    if(this.addresses.length == 0) {
+      this.currentQuestion = null;
+      return;
     }
-    delete this.addresses[varNumber];
-    this.maxAddressesIndex = this.addresses.length - this.answeredCounter - 1;
+    this.currentQuestion = this.addresses.pop();
   }
 
 }

@@ -1,6 +1,8 @@
 <app-input-list></app-input-list><br />
 <button (click)="updateInput()">Reset and load list</button><br /><br />
-<input type="number" [(ngModel)]="addressIndex" [max]="maxAddressesIndex" min="0" (ngModelChange)="updateOutput()" /><br />
+<!--<input type="number" [(ngModel)]="addressIndex" [max]="maxAddressesIndex" min="0" (ngModelChange)="updateOutput()" /><br />-->
 <app-choose-answer></app-choose-answer><br />
-<button (click)="chooseAnswer()">Choose answer</button>
-<p>Answered {{answeredCounter}} addresses and had {{correctCounter}} correct</p>
+<button (click)="chooseAnswer()" *ngIf="currentQuestion != null">Choose answer</button>
+<p>Answered {{correctAnsweredQuestions.length}} addresses and had {{incorrectAnsweredQuestions.length}} correct. <br />
+  Which is {{correctAnsweredQuestions.length + incorrectAnsweredQuestions.length}} questiones answered in total!</p>
+<p *ngIf="lastQuestion != null">Last question was: {{lastQuestion['address']}} and the correct answer was: {{lastQuestion['answer']}}.</p>
