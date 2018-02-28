@@ -34,6 +34,7 @@ export class GuessStatePracticeComponent implements OnInit {
     this.answers = this.inputListComponent.getPossibleAnswers();
     this.addresses = this.inputListComponent.getAddresses();
     this.commonFunctions.shuffleArray(this.addresses);
+    this.updateOutput();
   }
 
   public updateOutput() {
