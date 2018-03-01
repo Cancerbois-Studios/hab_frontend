@@ -26,14 +26,13 @@ export class GuessStatePracticeComponent implements OnInit {
 
   ngOnInit() {
     this.updateInput();
-    this.nextAnswer();
-    this.updateOutput();
   }
 
   public updateInput() {
     this.answers = this.inputListComponent.getPossibleAnswers();
     this.addresses = this.inputListComponent.getAddresses();
     this.commonFunctions.shuffleArray(this.addresses);
+    this.nextAnswer();
     this.updateOutput();
   }
 

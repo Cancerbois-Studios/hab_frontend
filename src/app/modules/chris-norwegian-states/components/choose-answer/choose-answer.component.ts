@@ -23,4 +23,8 @@ export class ChooseAnswerComponent implements OnInit {
     this.address = address;
   }
 
+  public chooseAnswer(answer: string) {
+    console.log(answer);
+  }
+
 }

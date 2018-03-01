@@ -9,7 +9,7 @@ export class InputListComponent implements OnInit {
 
   constructor() { }
 
-  public input = '1 Strøm Terrasse	Austad / Fjell\n' +
+  /*public input = '1 Strøm Terrasse	Austad / Fjell\n' +
   '2 Strøm Terrasse	Austad / Fjell\n' +
   '3 Strøm Terrasse	Austad / Fjell\n' +
   '4 Strøm Terrasse	Austad / Fjell\n' +
@@ -33,7 +33,8 @@ export class InputListComponent implements OnInit {
   'Bjorkelia	Gulskogen\n' +
   'Blektjernveien	Austad / Fjell\n' +
   'Blentenborgveien	Konnerud\n' +
-  'Bolstadhagen	Åssiden';
+  'Bolstadhagen	Åssiden';*/
+  public input = '';
 
   private addresses = [];
   private answers = [];
