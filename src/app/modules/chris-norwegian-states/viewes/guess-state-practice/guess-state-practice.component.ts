@@ -69,4 +69,12 @@ export class GuessStatePracticeComponent implements OnInit {
     this.currentQuestion = this.addresses.pop();
   }
 
+  public skipAnswer() {
+    this.lastQuestion = this.currentQuestion;
+    this.nextAnswer();
+    this.updateOutput();
+    this.addresses.push(this.lastQuestion);
+    this.commonFunctions.shuffleArray(this.addresses);
+  }
+
 }
