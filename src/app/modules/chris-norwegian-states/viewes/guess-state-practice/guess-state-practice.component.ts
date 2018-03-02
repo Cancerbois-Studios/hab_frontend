@@ -32,6 +32,10 @@ export class GuessStatePracticeComponent implements OnInit {
     this.answers = this.inputListComponent.getPossibleAnswers();
     this.addresses = this.inputListComponent.getAddresses();
     this.commonFunctions.shuffleArray(this.addresses);
+    this.correctAnsweredQuestions = [];
+    this.incorrectAnsweredQuestions = [];
+    this.lastQuestion = null;
+    this.currentQuestion = null;
     this.nextAnswer();
     this.updateOutput();
   }
@@ -44,12 +48,14 @@ export class GuessStatePracticeComponent implements OnInit {
     this.chooseAnswerComponent.update('-', this.answers);
   }
 
-  public chooseAnswer() {
+  public chooseAnswer(answerChoosen) {
     this.lastQuestion = this.currentQuestion;
-    if (this.chooseAnswerComponent.selectedAnswer == this.currentQuestion['answer']) {
+    if (answerChoosen == this.currentQuestion['answer']) {
       this.correctAnsweredQuestions.push(this.currentQuestion);
+      this.lastQuestion.status = 'Correct';
     } else {
       this.incorrectAnsweredQuestions.push(this.currentQuestion);
+      this.lastQuestion.status = 'Incorrect';
     }
     this.nextAnswer();
     this.updateOutput();
