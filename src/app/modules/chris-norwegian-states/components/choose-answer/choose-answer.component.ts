@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-choose-answer',
@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./choose-answer.component.css']
 })
 export class ChooseAnswerComponent implements OnInit {
+
+  @Output() answerChoosen = new EventEmitter();
 
   public address = '';
   public answers = [''];
@@ -24,7 +26,7 @@ export class ChooseAnswerComponent implements OnInit {
   }
 
   public chooseAnswer(answer: string) {
-    console.log(answer);
+    this.answerChoosen.emit(answer);
   }
 
 }
