@@ -18,8 +18,8 @@ export class AuthenticationService {
   public login(username, password) { 
     let reqOption: HttpDefined = {
       requestResource: 'http://skjoldtoft.dk/daniel/hab/index.php',
-      data: {class: "jwtToken",
-      method: "getJwtToken", username: username, password: password },
+      data: {class: "authentication",
+      method: "login", username: username, password: password },
       statusCode: [200]
     };
 
@@ -28,6 +28,7 @@ export class AuthenticationService {
       if (reqOption.statusCode.indexOf(response.status) > -1) {
         let data = response.body;
         this.token = data[0];
+        console.log('setting token!');
         localStorage.setItem('jwttoken', this.token);
         this.setTokenInfo();
       } else {
@@ -35,6 +36,7 @@ export class AuthenticationService {
       }
     }).catch((error: HttpResponse<any>) => {
       if (reqOption.statusCode.indexOf(error.status) > -1) {
+        console.log(error);
         return error.body;
       } else {
         return Observable.throw("Unexpected error: " + error.status + " : " + error.statusText + " : " + error.body);
@@ -47,7 +49,6 @@ export class AuthenticationService {
     let splitToken = this.token.split('.');
     this.tokenHeader = JSON.parse(atob(splitToken[0]));
     this.tokenPayload = JSON.parse(atob(splitToken[1]));
-    console.log(this.tokenPayload);
   }
 
   public getToken() {

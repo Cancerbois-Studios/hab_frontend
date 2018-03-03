@@ -8,13 +8,17 @@ import { AuthenticationService } from '../../services/authentication.service';
 })
 export class LoginComponent implements OnInit {
 
-  public token = '';
+  public username;
+  public password;
 
   constructor(private authenticationService: AuthenticationService) { }
 
   ngOnInit() {
-    this.authenticationService.login('dst','dst').subscribe(() => {
-      console.log("logging in!");
+  }
+
+  public login() {
+    this.authenticationService.login(this.username,this.password).subscribe(() => {
+      console.log('Logged in!');
     });
   }
 

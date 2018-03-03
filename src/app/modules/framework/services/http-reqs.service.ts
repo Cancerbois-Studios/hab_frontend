@@ -14,7 +14,8 @@ export class HttpReqsService {
 
   sendPostRequest(reqOption: HttpDefined) {
     let headers = new HttpHeaders();
-    headers.append('authorization', this.authenticationService.getToken());
+    //headers.append('authorization', this.authenticationService.getToken());
+    reqOption.data.jwt_token = this.authenticationService.getToken();
     let retval = this.http.post(reqOption.requestResource, reqOption.data, { headers: headers, observe: 'response' }).map((response: HttpResponse<Object>) => {
       if (reqOption.statusCode.indexOf(response.status) > -1) {
         return response.body;
