@@ -53,9 +53,18 @@ export class AuthenticationService {
 
   public getToken() {
     if(this.token == null || this.token == undefined) {
-      return "";
+      return '';
     } else {
       return this.token;
+    }
+  }
+
+  public isAuth() {
+    this.token = localStorage.getItem('jwttoken');
+    if(this.token == null || this.token == undefined) {
+      return false;
+    } else {
+      return true;
     }
   }
 

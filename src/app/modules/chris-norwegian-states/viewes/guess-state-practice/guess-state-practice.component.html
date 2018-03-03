@@ -9,3 +9,5 @@
 <p>Answered {{correctAnsweredQuestions.length}} correct and had {{incorrectAnsweredQuestions.length}} incorrect. <br />
   Which is {{correctAnsweredQuestions.length + incorrectAnsweredQuestions.length}} questiones answered in total!</p>
 <p *ngIf="lastQuestion != null">Last question was: {{lastQuestion['address']}} and the correct answer was: {{lastQuestion['answer']}}.</p>
+<br />
+<app-user-statistic (saveClicked)="saveStatistics()"></app-user-statistic>

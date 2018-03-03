@@ -1,0 +1,10 @@
+<p *ngIf="!auth">Use: dst as username, test as password</p>
+<app-user-login *ngIf="!auth"></app-user-login>
+<div *ngIf="auth">
+  <p>
+    {{username}} statistics are:<br />
+    {{correctCount}} correct answers<br />
+    {{incorrectCount}} incorrect answers
+  </p>
+  <button (click)="saveClickEventEmit()">Save statistics</button>
+</div>

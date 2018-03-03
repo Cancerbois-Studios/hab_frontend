@@ -1,7 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { CommonFunctionsService } from '../../../framework/services/common-functions.service';
 import { InputListComponent } from '../../components/input-list/input-list.component';
 import { ChooseAnswerComponent } from '../../components/choose-answer/choose-answer.component';
-import { CommonFunctionsService } from '../../../framework/services/common-functions.service';
+import { UserStatisticComponent } from '../../components/user-statistic/user-statistic.component';
 
 @Component({
   selector: 'app-guess-state-practice',
@@ -20,6 +21,8 @@ export class GuessStatePracticeComponent implements OnInit {
   public inputListComponent: InputListComponent;
   @ViewChild(ChooseAnswerComponent)
   public chooseAnswerComponent: ChooseAnswerComponent;
+  @ViewChild(UserStatisticComponent)
+  public userStatisticComponent: UserStatisticComponent;
 
 
   constructor(private commonFunctions: CommonFunctionsService) { }
@@ -75,6 +78,10 @@ export class GuessStatePracticeComponent implements OnInit {
     this.updateOutput();
     this.addresses.push(this.lastQuestion);
     this.commonFunctions.shuffleArray(this.addresses);
+  }
+
+  public saveStatistics() {
+    this.userStatisticComponent.saveStatistics(this.correctAnsweredQuestions.length, this.incorrectAnsweredQuestions.length);
   }
 
 }
