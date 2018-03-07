@@ -9,6 +9,7 @@ import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './viewes/home/home.component';
 import { UserRegistrationComponent } from './viewes/user-registration/user-registration.component';
 import { UserLoginComponent } from './viewes/user-login/user-login.component';
+import { HeaderComponent } from './viewes/header/header.component';
 
 
 @NgModule({
@@ -16,7 +17,7 @@ import { UserLoginComponent } from './viewes/user-login/user-login.component';
     CommonModule,
     FormsModule
   ],
-  declarations: [LoginComponent, HomeComponent, UserRegistrationComponent, UserLoginComponent],
+  declarations: [LoginComponent, HomeComponent, UserRegistrationComponent, UserLoginComponent, HeaderComponent],
   providers: [
     HttpReqsService,
     AuthenticationService,

@@ -18,8 +18,10 @@ export class AuthenticationService {
   public login(username, password) {
     let reqOption: HttpDefined = {
       requestResource: 'http://skjoldtoft.dk/daniel/hab/index.php',
-      data: {class: "authentication",
-      method: "login", username: username, password: password },
+      data: {
+        class: "authentication",
+        method: "login", username: username, password: password
+      },
       statusCode: [200]
     };
 
@@ -46,13 +48,18 @@ export class AuthenticationService {
   }
 
   private setTokenInfo() {
-    let splitToken = this.token.split('.');
-    this.tokenHeader = JSON.parse(atob(splitToken[0]));
-    this.tokenPayload = JSON.parse(atob(splitToken[1]));
+    this.checkTokenExpiration();
+    this.token = localStorage.getItem('jwttoken');
+    if (this.token != null && this.token !== undefined) {
+      let splitToken = this.token.split('.');
+      this.tokenHeader = JSON.parse(atob(splitToken[0]));
+      this.tokenPayload = JSON.parse(atob(splitToken[1]));
+    }
+
   }
 
   public getToken() {
-    if(this.token == null || this.token == undefined) {
+    if (this.token == null || this.token === undefined) {
       return '';
     } else {
       return this.token;
@@ -60,11 +67,18 @@ export class AuthenticationService {
   }
 
   public isAuth() {
-    this.token = localStorage.getItem('jwttoken');
-    if(this.token == null || this.token == undefined) {
+    this.setTokenInfo();
+    if (this.token == null || this.token === undefined) {
       return false;
     } else {
       return true;
+    }
+  }
+
+  private checkTokenExpiration() {
+    if (this.tokenPayload.expire < (Date.now() / 1000)) {
+      localStorage.removeItem('jwttoken');
+      this.setTokenInfo();
     }
   }
 
