@@ -7,9 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
+  public key;
+
   constructor() { }
 
   ngOnInit() {
+    this.key = localStorage.getItem('jwttoken');
   }
 
 }

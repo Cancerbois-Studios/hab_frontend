@@ -15,7 +15,7 @@ export class AuthenticationService {
   private tokenHeader: JwtTokenHeader;
   private tokenPayload: JwtTokenPayload;
 
-  public login(username, password) { 
+  public login(username, password) {
     let reqOption: HttpDefined = {
       requestResource: 'http://skjoldtoft.dk/daniel/hab/index.php',
       data: {class: "authentication",

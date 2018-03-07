@@ -33,3 +33,5 @@ export class HttpReqsService {
   }
 
 }
+
+//export class HttpDefined;

@@ -10,6 +10,7 @@ import { HomeComponent } from './viewes/home/home.component';
 import { UserRegistrationComponent } from './viewes/user-registration/user-registration.component';
 import { UserLoginComponent } from './viewes/user-login/user-login.component';
 
+
 @NgModule({
   imports: [
     CommonModule,
@@ -28,3 +29,4 @@ import { UserLoginComponent } from './viewes/user-login/user-login.component';
   ]
 })
 export class FrameworkModule { }
+
