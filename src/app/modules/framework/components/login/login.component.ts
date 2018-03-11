@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { AuthenticationService } from '../../services/authentication.service';
 
 @Component({
@@ -7,6 +7,8 @@ import { AuthenticationService } from '../../services/authentication.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+
+  @Output() loggedIn = new EventEmitter();
 
   public username;
   public password;
@@ -18,7 +20,7 @@ export class LoginComponent implements OnInit {
 
   public login() {
     this.authenticationService.login(this.username,this.password).subscribe(() => {
-      console.log('Logged in!');
+      this.loggedIn.emit(true);
     });
   }
 

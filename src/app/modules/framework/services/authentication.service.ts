@@ -41,7 +41,8 @@ export class AuthenticationService {
         console.log(error);
         return error.body;
       } else {
-        return Observable.throw("Unexpected error: " + error.status + " : " + error.statusText + " : " + error.body);
+        console.log(error);
+        return Observable.throw("Unexpected error!: " + error.status + " : " + error.statusText + " : " + error.body);
       }
     });
     return retval;
@@ -76,10 +77,14 @@ export class AuthenticationService {
   }
 
   private checkTokenExpiration() {
+    return;/*
+    if (this.token == null || this.token === undefined) {
+      return;
+    }
     if (this.tokenPayload.expire < (Date.now() / 1000)) {
       localStorage.removeItem('jwttoken');
       this.setTokenInfo();
-    }
+    }*/
   }
 
 }

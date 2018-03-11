@@ -24,12 +24,12 @@ export class UserStatisticComponent implements OnInit {
 
   ngOnInit() {
     this.auth = this.authenticationService.isAuth();
-    let token = this.authenticationService.getToken();
-    let splitToken = token.split('.');
-    let tokenPayload:JwtTokenPayload = JSON.parse(atob(splitToken[1]));
-    this.username = tokenPayload.username;
-    this.userId = tokenPayload.user_id;
-    if(this.auth) {
+    if (this.auth) {
+      let token = this.authenticationService.getToken();
+      let splitToken = token.split('.');
+      let tokenPayload: JwtTokenPayload = JSON.parse(atob(splitToken[1]));
+      this.username = tokenPayload.username;
+      this.userId = tokenPayload.user_id;
       this.getStatistics();
     }
   }
@@ -37,8 +37,10 @@ export class UserStatisticComponent implements OnInit {
   public getStatistics() {
     let reqOption: HttpDefined = {
       requestResource: 'http://skjoldtoft.dk/daniel/hab/index.php',
-      data: {class: "cns_statistics",
-      method: "getUserStatistics", user_id: this.userId },
+      data: {
+        class: "cns_statistics",
+        method: "getUserStatistics", user_id: this.userId
+      },
       statusCode: [200]
     };
     this.httpReqs.sendPostRequest(reqOption).subscribe((data) => {
@@ -50,8 +52,10 @@ export class UserStatisticComponent implements OnInit {
   public saveStatistics(correct: number, incorrect: number) {
     let reqOption: HttpDefined = {
       requestResource: 'http://skjoldtoft.dk/daniel/hab/index.php',
-      data: {class: "cns_statistics",
-      method: "setUserStatistics", user_id: this.userId, correct_count: correct, incorrect_count: incorrect },
+      data: {
+        class: "cns_statistics",
+        method: "setUserStatistics", user_id: this.userId, correct_count: correct, incorrect_count: incorrect
+      },
       statusCode: [200]
     };
     this.httpReqs.sendPostRequest(reqOption).subscribe((data) => {
@@ -61,6 +65,18 @@ export class UserStatisticComponent implements OnInit {
 
   public saveClickEventEmit() {
     this.saveClicked.emit(true);
+  }
+
+  public onLogin() {
+    this.auth = this.authenticationService.isAuth();
+    if (this.auth) {
+      let token = this.authenticationService.getToken();
+      let splitToken = token.split('.');
+      let tokenPayload: JwtTokenPayload = JSON.parse(atob(splitToken[1]));
+      this.username = tokenPayload.username;
+      this.userId = tokenPayload.user_id;
+      this.getStatistics();
+    }
   }
 
 }
