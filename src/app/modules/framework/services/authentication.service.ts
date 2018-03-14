@@ -1,19 +1,17 @@
 import { Injectable } from '@angular/core';
+import { CanActivate } from '@angular/router';
 import { HttpHeaders, HttpClient, HttpResponse, HttpRequest } from '@angular/common/http';
 import { JwtTokenHeader, JwtTokenPayload } from '../interfaces/jwttoken';
 import { HttpDefined } from '../interfaces/http-defined';
+import { GlobalService } from './global.service';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 
 @Injectable()
-export class AuthenticationService {
-  constructor(private http: HttpClient) { }
-
-  private token;
-  private tokenHeader: JwtTokenHeader;
-  private tokenPayload: JwtTokenPayload;
+export class AuthenticationService implements CanActivate {
+  constructor(private http: HttpClient, private globalService: GlobalService) { }
 
   public login(username, password) {
     let reqOption: HttpDefined = {
@@ -29,10 +27,7 @@ export class AuthenticationService {
     let retval = this.http.post(reqOption.requestResource, reqOption.data, { headers: headers, observe: 'response' }).map((response: HttpResponse<Object>) => {
       if (reqOption.statusCode.indexOf(response.status) > -1) {
         let data = response.body;
-        this.token = data[0];
-        console.log('setting token!');
-        localStorage.setItem('jwttoken', this.token);
-        this.setTokenInfo();
+        localStorage.setItem('jwttoken', data[0]);
       } else {
         return Observable.throw("Unexpected answer: " + response.status + " : " + response.statusText + " : " + response.body);
       }
@@ -48,43 +43,17 @@ export class AuthenticationService {
     return retval;
   }
 
-  private setTokenInfo() {
-    this.checkTokenExpiration();
-    this.token = localStorage.getItem('jwttoken');
-    if (this.token != null && this.token !== undefined) {
-      let splitToken = this.token.split('.');
-      this.tokenHeader = JSON.parse(atob(splitToken[0]));
-      this.tokenPayload = JSON.parse(atob(splitToken[1]));
+  public logout() {
+    localStorage.removeItem('jwttoken');
     }
 
-  }
-
-  public getToken() {
-    if (this.token == null || this.token === undefined) {
-      return '';
-    } else {
-      return this.token;
-    }
-  }
-
-  public isAuth() {
-    this.setTokenInfo();
-    if (this.token == null || this.token === undefined) {
-      return false;
-    } else {
+  canActivate() {
+    if (this.globalService.isAuth()) {
       return true;
+    } else {
+      this.globalService.routeTo(['/login']);
+      return false;
     }
-  }
-
-  private checkTokenExpiration() {
-    return;/*
-    if (this.token == null || this.token === undefined) {
-      return;
-    }
-    if (this.tokenPayload.expire < (Date.now() / 1000)) {
-      localStorage.removeItem('jwttoken');
-      this.setTokenInfo();
-    }*/
   }
 
 }

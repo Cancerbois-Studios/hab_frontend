@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { HttpReqsService } from './services/http-reqs.service';
 import { AuthenticationService } from './services/authentication.service';
 import { CommonFunctionsService } from './services/common-functions.service';
+import { GlobalService } from './services/global.service';
 import { HttpClient } from '@angular/common/http/src/client';
 import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './viewes/home/home.component';
@@ -21,7 +22,8 @@ import { HeaderComponent } from './viewes/header/header.component';
   providers: [
     HttpReqsService,
     AuthenticationService,
-    CommonFunctionsService
+    CommonFunctionsService,
+    GlobalService
   ],
   exports: [
     HomeComponent,

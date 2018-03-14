@@ -1,8 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { AuthenticationService } from '../../../framework/services/authentication.service';
-import { HttpReqsService } from '../../../framework/services/http-reqs.service';
-import { HttpDefined } from '../../../framework/interfaces/http-defined';
-import { JwtTokenHeader, JwtTokenPayload } from '../../../framework/interfaces/jwttoken';
+import { AuthenticationService, HttpReqsService, GlobalService, HttpDefined, JwtTokenHeader, JwtTokenPayload } from '../../../framework/framework-export-barrel';
 
 @Component({
   selector: 'app-user-statistic',
@@ -20,14 +17,12 @@ export class UserStatisticComponent implements OnInit {
 
   private userId = -1;
 
-  constructor(private authenticationService: AuthenticationService, private httpReqs: HttpReqsService) { }
+  constructor(private globalService: GlobalService, private httpReqs: HttpReqsService) { }
 
   ngOnInit() {
-    this.auth = this.authenticationService.isAuth();
+    this.auth = this.globalService.isAuth();
     if (this.auth) {
-      let token = this.authenticationService.getToken();
-      let splitToken = token.split('.');
-      let tokenPayload: JwtTokenPayload = JSON.parse(atob(splitToken[1]));
+      let tokenPayload: JwtTokenPayload = this.globalService.getToken();
       this.username = tokenPayload.username;
       this.userId = tokenPayload.user_id;
       this.getStatistics();
@@ -68,11 +63,9 @@ export class UserStatisticComponent implements OnInit {
   }
 
   public onLogin() {
-    this.auth = this.authenticationService.isAuth();
+    this.auth = this.globalService.isAuth();
     if (this.auth) {
-      let token = this.authenticationService.getToken();
-      let splitToken = token.split('.');
-      let tokenPayload: JwtTokenPayload = JSON.parse(atob(splitToken[1]));
+      let tokenPayload: JwtTokenPayload = this.globalService.getToken();
       this.username = tokenPayload.username;
       this.userId = tokenPayload.user_id;
       this.getStatistics();
