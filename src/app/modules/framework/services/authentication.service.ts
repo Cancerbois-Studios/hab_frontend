@@ -51,7 +51,7 @@ export class AuthenticationService implements CanActivate {
     if (this.globalService.isAuth()) {
       return true;
     } else {
-      this.globalService.routeTo(['/login']);
+      this.globalService.routeTo(['/index']);
       return false;
     }
   }

@@ -5,6 +5,8 @@ import { JwtTokenPayload } from '../framework-export-barrel';
 @Injectable()
 export class GlobalService {
 
+  public tokenName = "hab-jwttoken";
+
   constructor(private router: Router) { }
 
 
