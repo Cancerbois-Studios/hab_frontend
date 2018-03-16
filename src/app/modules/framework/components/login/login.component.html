@@ -1,3 +1,9 @@
-<input type="text" [(ngModel)]="username" />
-<input type="password" [(ngModel)]="password" />
-<button (click)="login()">Login</button>
+<div class="center-div center-text login-div">
+
+    <label>Brugernavn</label>
+    <input class="input" type="text" [(ngModel)]="username" />
+
+    <label>Password</label>
+    <input class="input" type="password" [(ngModel)]="password" />
+    <button class="btn login-btn" (click)="login()">Login</button>
+</div>
