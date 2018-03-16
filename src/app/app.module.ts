@@ -11,7 +11,7 @@ import { ChrisNorwegianStatesModule } from './modules/chris-norwegian-states/chr
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     CommonModule,

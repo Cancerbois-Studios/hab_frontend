@@ -13,6 +13,8 @@ import { UserLoginComponent } from './viewes/user-login/user-login.component';
 import { HeaderComponent } from './viewes/header/header.component';
 import { IndexComponent } from './viewes/index/index.component';
 import { LogoutComponent } from './viewes/logout/logout.component';
+import { PropercasePipe } from './pipes/propercase.pipe';
+import { TimesPipe } from './pipes/times.pipe';
 
 
 @NgModule({
@@ -20,7 +22,7 @@ import { LogoutComponent } from './viewes/logout/logout.component';
     CommonModule,
     FormsModule
   ],
-  declarations: [LoginComponent, HomeComponent, UserRegistrationComponent, UserLoginComponent, HeaderComponent, IndexComponent, LogoutComponent],
+  declarations: [LoginComponent, HomeComponent, UserRegistrationComponent, UserLoginComponent, HeaderComponent, IndexComponent, LogoutComponent, PropercasePipe, TimesPipe],
   providers: [
     HttpReqsService,
     AuthenticationService,
