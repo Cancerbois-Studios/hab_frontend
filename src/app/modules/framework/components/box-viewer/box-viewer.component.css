@@ -1,0 +1,9 @@
+.grid-item {
+    height: 100px;
+    width: 100px;
+    background-color: black;
+}
+
+.grid-container {
+    grid-gap: 30px;
+}

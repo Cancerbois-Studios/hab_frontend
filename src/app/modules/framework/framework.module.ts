@@ -16,6 +16,7 @@ import { LogoutComponent } from './viewes/logout/logout.component';
 import { PropercasePipe } from './pipes/propercase.pipe';
 import { TimesPipe } from './pipes/times.pipe';
 import { FooterComponent } from './viewes/footer/footer.component';
+import { BoxViewerComponent } from './components/box-viewer/box-viewer.component';
 
 
 @NgModule({
@@ -23,7 +24,7 @@ import { FooterComponent } from './viewes/footer/footer.component';
     CommonModule,
     FormsModule
   ],
-  declarations: [LoginComponent, HomeComponent, UserRegistrationComponent, UserLoginComponent, HeaderComponent, IndexComponent, LogoutComponent, PropercasePipe, TimesPipe, FooterComponent],
+  declarations: [LoginComponent, HomeComponent, UserRegistrationComponent, UserLoginComponent, HeaderComponent, IndexComponent, LogoutComponent, PropercasePipe, TimesPipe, FooterComponent, BoxViewerComponent],
   providers: [
     HttpReqsService,
     AuthenticationService,
@@ -35,7 +36,8 @@ import { FooterComponent } from './viewes/footer/footer.component';
     UserRegistrationComponent,
     UserLoginComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    BoxViewerComponent
   ]
 })
 export class FrameworkModule { }
