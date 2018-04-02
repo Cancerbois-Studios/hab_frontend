@@ -1,9 +1,17 @@
 .grid-item {
     height: 100px;
-    width: 100px;
+    width: 100%;
     background-color: black;
 }
 
 .grid-container {
     grid-gap: 30px;
+}
+
+.filter-div {
+    margin-bottom: 20px;
+}
+
+.input {
+    width: 30%;
 }

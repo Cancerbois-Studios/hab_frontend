@@ -1,7 +1,14 @@
+<div *ngIf="showFilter" class="filter-div">
+  <label>Vis:</label>
+  <select [(ngModel)]="amountSelected" (ngModelChange)="onViewChanges($event)" class="input">
+    <option *ngFor="let amount of amounts;">
+      {{amount}}
+    </option>
+  </select>
+</div>
+
 <div class="grid-container">
-  <div *ngFor="let x of boxes | times;" class="grid-item">
+  <div *ngFor="let x of amountSelected | times;" class="grid-item">
 
   </div>
 </div>
-
-<button style="margin-top: 40px;" (click)="addBox()">Tilføj kasse</button>
