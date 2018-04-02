@@ -3,7 +3,16 @@
     margin-top: 20px;
 }
 
-.login-btn {
+.login-btn, .register-btn {
     float: right;
     width: 150px;
+    background-color: rgb(45, 45, 45);
+}
+
+.register-btn {
+    margin-right: 10px;
+}
+
+label {
+    color: white;
 }

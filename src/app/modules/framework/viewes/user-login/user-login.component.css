@@ -1,0 +1,14 @@
+.login-screen {
+    background-color: rgb(28, 28, 28);
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    z-index: -5;
+}
+
+.logo {
+    font-size: 100px;
+    color: white;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}

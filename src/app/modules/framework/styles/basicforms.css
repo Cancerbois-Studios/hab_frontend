@@ -1,6 +1,6 @@
 /* For global, generic, css classes. View specific css classes should be placed within their component css-stylesheet */
 
-.btn {
+.form-btn {
     background-color: rgb(28, 28, 28);
     border-radius: 4px;
     color: whitesmoke;
@@ -9,7 +9,7 @@
     height: 35px;
 }
 
-.btn:hover {
+.form-btn:hover {
     opacity: 0.5;
     cursor: pointer;
 }

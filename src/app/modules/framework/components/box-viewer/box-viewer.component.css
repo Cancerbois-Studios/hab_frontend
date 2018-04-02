@@ -23,7 +23,7 @@
     width: 100%;
     position: absolute;
     bottom: 0;
-    height: 16px;
+    height: 22px;
 }
 
 .grid-bottom-btn {
@@ -32,7 +32,7 @@
 }
 
 .grid-top-btn {
-    bottom: 20px;
+    bottom: 24px;
     border-radius: 0;
 }
 
