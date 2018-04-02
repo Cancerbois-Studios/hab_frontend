@@ -54,7 +54,7 @@ export class BoxViewerComponent implements OnInit {
         elements[i].style.height = _height;
         if (_fullscreenToggle && innerElements[i].classList.contains("pic-div-hover")) {
           innerElements[i].classList.remove("pic-div-hover");
-        } else {
+        } else if(!_fullscreenToggle) {
           innerElements[i].classList.add("pic-div-hover");
         }
       }
