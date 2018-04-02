@@ -10,41 +10,55 @@ export class BoxViewerComponent implements OnInit {
 
   public amounts: any[];
   public amountSelected: number;
+  public fullscreenToggle: boolean = false;
 
   constructor() { }
 
   ngOnInit() {
-    this.amounts = [6, 12, 24];
-    this.amountSelected = this.amounts[2];
+    this.amounts = [1, 6, 12, 24];
+    this.amountSelected = this.amounts[3];
   }
 
   public onViewChanges(_amount) {
+
+    var innerElements = document.getElementsByClassName("pic-div") as HTMLCollectionOf<HTMLElement>;
+
+    switch (+_amount) {
+      case 1:
+        this.cssElementsCheck(true, "600px", "100%");
+        break;
+      case 6:
+        this.cssElementsCheck(true, "200px", "200px");
+        break;
+      case 12:
+        this.cssElementsCheck(false, "150px", "150px");
+        break;
+      case 24:
+        this.cssElementsCheck(false, "100px", "100px");
+        break;
+      default:
+        break;
+    }
+
+  }
+
+  private cssElementsCheck(_fullscreenToggle, _height, _fillerHeight) {
     setTimeout(() => {
       let container = document.getElementsByClassName("grid-container")[0] as HTMLElement;
       var elements = document.getElementsByClassName("grid-item") as HTMLCollectionOf<HTMLElement>;
+      var innerElements = document.getElementsByClassName("pic-div") as HTMLCollectionOf<HTMLElement>;
 
-      switch (+_amount) {
-        case 6:
-          for (let i = 0; i < _amount; i++) {
-            elements[i].style.height = "200px";
-          }
-          container.style.setProperty("grid-template-columns", "repeat(auto-fill, minmax(200px, 1fr))");
-          break;
-        case 12:
-          for (let i = 0; i < _amount; i++) {
-            elements[i].style.height = "150px";
-          }
-          container.style.setProperty("grid-template-columns", "repeat(auto-fill, minmax(150px, 1fr))");
-          break;
-        case 24:
-          for (let i = 0; i < _amount; i++) {
-            elements[i].style.height = "100px";
-          }
-          container.style.setProperty("grid-template-columns", "repeat(auto-fill, minmax(100px, 1fr))");
-          break;
-        default:
-          break;
+      this.fullscreenToggle = _fullscreenToggle;
+
+      for (let i = 0; i < this.amountSelected; i++) {
+        elements[i].style.height = _height;
+        if (_fullscreenToggle && innerElements[i].classList.contains("pic-div-hover")) {
+          innerElements[i].classList.remove("pic-div-hover");
+        } else {
+          innerElements[i].classList.add("pic-div-hover");
+        }
       }
+      container.style.setProperty("grid-template-columns", "repeat(auto-fill, minmax(" + _fillerHeight + ", 1fr))");
     }, 0);
   }
 

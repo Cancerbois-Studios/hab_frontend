@@ -1,7 +1,39 @@
 .grid-item {
     height: 100px;
+    width: 100%;;
+    display: inline-block;
+    position: relative;
+}
+
+.pic-div, .pic-div-hover {
+    background-color: whitesmoke;
     width: 100%;
-    background-color: black;
+    height: 100%;
+    border-radius: 3px;
+}
+
+.pic-div-hover:hover {
+    position: absolute;
+    transform: scale(1.2);
+    z-index: 1;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.grid-btn {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    height: 16px;
+}
+
+.grid-bottom-btn {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+.grid-top-btn {
+    bottom: 20px;
+    border-radius: 0;
 }
 
 .grid-container {

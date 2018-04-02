@@ -10,5 +10,11 @@
 <div class="grid-container">
   <div *ngFor="let x of amountSelected | times;" class="grid-item">
 
+    <div class="pic-div pic-div-hover">
+
+      <button *ngIf="fullscreenToggle" class="btn grid-btn grid-top-btn">Tag tingen</button>
+      <button class="btn grid-btn grid-bottom-btn">Mere info</button>
+    </div>
+
   </div>
 </div>
