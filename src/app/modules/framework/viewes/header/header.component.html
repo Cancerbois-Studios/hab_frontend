@@ -1,9 +1,11 @@
 <header>
-    <div class="header-buttonrow">
-        <button class="form-btn" (click)="navigateTo('/chris-norwegian-states')">CNS</button>
-        <button class="form-btn" (click)="navigateTo('/register')">Register</button>
-        <button class="form-btn" (click)="navigateTo('/login')">Login</button>
-        <button class="form-btn" (click)="navigateTo('/logout')">Logout</button>
-        <button class="form-btn" (click)="navigateTo('/home')">Home</button>
+    <div class="header-menu">
+        <button *ngFor="let button of buttonRow;" class="form-btn" (click)="navigateTo(button[1])">{{button[0]}}</button>
+    </div>
+    <div class="header-small-menu">
+        <button class="form-btn menu-btn" (click)="openMenu()"><span class="glyphicon glyphicon-align-justify"></span></button>
+    </div>
+    <div *ngIf="menuOpened" class="header-small-dropdown">
+        <button *ngFor="let button of buttonRow;" class="form-btn dropdown-btn" (click)="navigateTo(button[1])">{{button[0]}}</button>
     </div>
 </header>
