@@ -1,11 +1,11 @@
-<header>
+<header class="base-colors">
     <div class="header-menu">
-        <button *ngFor="let button of buttonRow;" class="form-btn" (click)="navigateTo(button[1])">{{button[0]}}</button>
+        <button *ngFor="let button of buttonRow;" class="menu-btn" (click)="navigateTo(button[1])">{{button[0]}}</button>
     </div>
     <div class="header-small-menu">
-        <button class="form-btn menu-btn" (click)="openMenu()"><span class="glyphicon glyphicon-align-justify"></span></button>
+        <button class="form-btn menu-small-btn" (click)="openMenu()"><span class="glyphicon glyphicon-align-justify"></span></button>
     </div>
-    <div *ngIf="menuOpened" class="header-small-dropdown">
+    <div *ngIf="menuOpened" class="header-small-dropdown base-colors">
         <button *ngFor="let button of buttonRow;" class="form-btn dropdown-btn" (click)="navigateTo(button[1])">{{button[0]}}</button>
     </div>
 </header>

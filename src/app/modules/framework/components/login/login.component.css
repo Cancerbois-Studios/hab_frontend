@@ -1,18 +1,36 @@
 .login-div {
     width: 25%;
-    margin-top: 20px;
+    margin-top: 100px;
+    overflow: auto;
+    padding: 40px;
+    border-radius: 4px;
+    
+    -moz-box-shadow: 1px 1px 1px rgba(0, 0, 0,0.5);
+    -webkit-box-shadow: 1px 1px 1px rgba(0, 0, 0, .5);
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, .5);
 }
 
-.login-btn, .register-btn {
-    float: right;
-    width: 150px;
-    background-color: rgb(45, 45, 45);
+.register-btn, .login-btn {
+    width: 50%;
 }
 
-.register-btn {
-    margin-right: 10px;
+.login-hr {
+    color: white;
+    margin-bottom: 30px;
 }
 
 label {
     color: white;
+}
+
+.logo {
+    font-size: 100px;
+    color: white;
+    margin-bottom: 20px;
+}
+
+@media screen and (max-width: 1257px) {
+    .login-div {
+        width: 100%;
+    }
 }
