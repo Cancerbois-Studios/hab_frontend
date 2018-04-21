@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { JwtTokenPayload } from '../framework-export-barrel';
+import { JwtTokenPayload } from '../interfaces/jwttoken';
 
 @Injectable()
 export class GlobalService {

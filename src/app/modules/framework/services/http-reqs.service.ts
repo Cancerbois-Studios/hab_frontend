@@ -4,7 +4,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 import { HttpHeaders, HttpClient, HttpResponse, HttpRequest } from '@angular/common/http';
-import { HttpDefined } from '../framework-export-barrel';
+import { HttpDefined } from '../interfaces/http-defined';
 
 @Injectable()
 export class HttpReqsService {

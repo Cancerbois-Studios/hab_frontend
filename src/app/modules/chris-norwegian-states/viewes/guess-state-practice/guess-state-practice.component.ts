@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { CommonFunctionsService } from '../../../framework/services/common-functions.service';
+import { CommonFunctionsService } from '../../../framework/framework.module';
 import { InputListComponent } from '../../components/input-list/input-list.component';
 import { ChooseAnswerComponent } from '../../components/choose-answer/choose-answer.component';
 import { UserStatisticComponent } from '../../components/user-statistic/user-statistic.component';

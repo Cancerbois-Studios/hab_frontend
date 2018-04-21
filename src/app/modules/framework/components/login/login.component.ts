@@ -1,6 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { AuthenticationService } from '../../services/authentication.service';
-import { HttpReqsService, HttpDefined } from '../../framework-export-barrel';
+import { HttpReqsService } from '../../services/http-reqs.service';
+import { HttpDefined } from '../../interfaces/http-defined';
 import { Router } from '@angular/router';
 
 @Component({

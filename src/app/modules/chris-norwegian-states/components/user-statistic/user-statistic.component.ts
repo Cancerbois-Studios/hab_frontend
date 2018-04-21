@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { AuthenticationService, HttpReqsService, GlobalService, HttpDefined, JwtTokenHeader, JwtTokenPayload } from '../../../framework/framework-export-barrel';
+import { AuthenticationService, HttpReqsService, GlobalService, HttpDefined, JwtTokenHeader, JwtTokenPayload } from '../../../framework/framework.module';
 
 @Component({
   selector: 'app-user-statistic',
